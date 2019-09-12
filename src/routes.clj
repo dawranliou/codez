@@ -1,9 +1,9 @@
 (ns routes
   (:require [coast]
-            [components]))
+            [layouts]))
 
 (def routes
   (coast/routes
    (coast/site
-    (coast/with-layout components/layout
+    (coast/with-layout layouts/layout
       [:get "/" :home/index]))))
