@@ -7,7 +7,7 @@
     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
     (coast/css "bundle.css")
     (coast/js "bundle.js")]
-   [:body.bg-light-pink
+   [:body.bg-light-pink.sans-serif
     body
     [:script {:src "/js/highlight.pack.js"}]
     [:script "hljs.initHighlightingOnLoad();"]]])

@@ -31,7 +31,7 @@
                                (c/submit "Submit"))))
 
 (defn post-form [request]
-  (let [[record errors] (-> (coast/validate (:params request) [[:required [:code/body :code/title]]])
+  (let [[record errors] (-> (coast/validate (:params request) [[:required [:code/body]]])
                             (select-keys [:code/body :code/title :code/language])
                             (update :code/language #(or % "plaintext"))
                             (assoc :code/published-at (coast.time2/now))

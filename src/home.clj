@@ -1,50 +1,24 @@
 (ns home
-  (:require [coast]))
+  (:require [coast]
+            [helpers]))
 
-(defn index [request]
-  [:div.vh-100.dt
-   [:h1.dtc.v-mid.code.f1.f-headline-ns.tc.pl3
-    "CODEZ"]])
+(defn index [_]
+  (let [snippets (coast/q '[:select * :from code :order id desc :where ["published_at is not null"]])]
+    [:div.vh-100-ns.dt-ns.dt--fixed-ns.w-100
+     [:div.dtc-ns.v-mid.tc
+      [:h1.dib.code.f1.f-headline-ns.lift
+       "CODEZ"] ]
 
-#_(defn index [request]
-    (let [rows (coast/q '[:select *
-                          :from code
-                          :order id
-                          :limit 10])]
-      (container {:mw 8}
-                 (when (not (empty? rows))
-                   (link-to (coast/url-for ::build) "New code"))
-
-                 (when (empty? rows)
-                   (tc
-                    (link-to (coast/url-for ::build) "New code")))
-
-                 (when (not (empty? rows))
-                   (table
-                    (thead
-                     (tr
-                      (th "member")
-                      (th "body")
-                      (th "id")
-                      (th "published-at")
-                      (th "updated-at")
-                      (th "slug")
-                      (th "created-at")
-                      (th "title")))
-                    (tbody
-                     (for [row rows]
-                       (tr
-                        (td (:code/member row))
-                        (td (:code/body row))
-                        (td (:code/id row))
-                        (td (:code/published-at row))
-                        (td (:code/updated-at row))
-                        (td (:code/slug row))
-                        (td (:code/created-at row))
-                        (td (:code/title row))
-                        (td
-                         (link-to (coast/url-for ::view row) "View"))
-                        (td
-                         (link-to (coast/url-for ::edit row) "Edit"))
-                        (td
-                         (button-to (coast/action-for ::delete row) {:data-confirm "Are you sure?"} "Delete"))))))))))
+     [:div.overflow-y-auto-ns
+      (for [{:code/keys [body language title slug published-at] :as record} snippets]
+        [:div.mt4
+         [:h2.f4.dib
+          [:a.link.dim.black.code {:href (coast/url-for :code/get-item record)}
+           (str slug " \"" title "\"")]]
+         [:time.f6.dib.ml3.code
+          {:data-seconds published-at
+           :data-date    true}
+          (helpers/time-ago published-at)]
+         [:pre
+          [:code {:class language}
+           body]]])]]))
