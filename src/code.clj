@@ -48,12 +48,18 @@
    (when (some? errors) (error errors))
    (let [slug   (:code-slug params)
          record (coast/pluck '[:select * :from code :where [slug ?slug]] {:slug slug})]
-     (def record record)
      (if (some? record)
-       [:article
-        [:h1 (:code/title record)]
-        [:div.code
-         [:pre
-          [:code {:class (:code/language record)}
-           (:code/body record)]]]]
+       (let [{:code/keys [title published-at body language]} record]
+         [:article
+          [:h2.f4.dib.mb0
+           [:a.link.dim.black.code {:href (coast/url-for :code/get-item record)}
+            (str slug " \"" title "\"")]]
+          [:time.f6.dib.ml3.code
+           {:data-seconds published-at
+            :data-date    true}
+           (helpers/time-ago published-at)]
+          [:pre
+           [:code {:class language}
+            body]]])
+
        (coast/raise {:not-found true})))))
