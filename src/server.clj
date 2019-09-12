@@ -6,8 +6,8 @@
 
 (defonce nrepl-server
   (do
-    (println "nrepl starting at port 7888")
-    (start-server :port 7888)))
+    (println "nrepl starting at port 7889")
+    (start-server :port 7889)))
 
 (def app (coast/app {:routes routes/routes}))
 

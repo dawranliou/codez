@@ -1,13 +1,13 @@
 .PHONY: test
 
 test:
-	COAST_ENV=test clj -A\:test
+	COAST_ENV=test clj -A:test
 
 clean:
 	rm -rf target/*
 
 uberjar:
-	clj -A\:uberjar
+	clj -A:uberjar
 
 repl:
 	clj -R:repl bin/repl.clj
