@@ -1,6 +1,5 @@
-(ns site.home
+(ns home
   (:require [coast]))
-
 
 (defn index [request]
   [:h1 {:class "tc"}
