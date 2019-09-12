@@ -44,7 +44,7 @@
 
 (defn get-item [{:keys [params errors]}]
   (c/container
-   {:mw 6}
+   {:mw 8}
    (when (some? errors) (error errors))
    (let [slug   (:code-slug params)
          record (coast/pluck '[:select * :from code :where [slug ?slug]] {:slug slug})]
