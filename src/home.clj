@@ -6,8 +6,8 @@
   (let [snippets (coast/q '[:select * :from code :order id desc :where ["published_at is not null"] :limit 50])]
     [:div.vh-100-ns.dt-ns.dt--fixed-ns.w-100
      [:div.dtc-ns.v-mid.tc
-      [:h1.dib.code.f1.f-headline-ns.lift
-       "CODEZ"] ]
+      [:h1.dib.code.f1.f-headline-ns.lift.ttu
+       "Codez"] ]
 
      [:div.overflow-y-scroll-ns.vh-100-ns
       [:a.db.mt3.bg-white.gray.pv3.ph2.link.code.cursor-text;;.bg-animate.hover-bg-black.hover-white
