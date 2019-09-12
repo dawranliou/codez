@@ -25,7 +25,7 @@
                                (c/input {:type "text" :name "code/language" :value (-> request :params :code/body)})
 
                                (c/label {:for "code/body"} "Body")
-                               [:textarea.db.w-100.vh-50.pa2.mb2 {:name "code/body" :value (-> request :params :code/body)}]
+                               [:textarea.db.w-100.vh-50.pa2.mb2.code {:name "code/body" :value (-> request :params :code/body)}]
 
                                (c/link-to (coast/url-for :home/index) "Cancel")
                                (c/submit "Submit"))))
@@ -46,8 +46,12 @@
   (c/container
    {:mw 6}
    (when (some? errors) (error errors))
-   (let [slug (:code-slug params)
-         code (coast/pluck '[:select * :from code :where [slug ?slug]] {:slug slug})]
-     (if (some? code)
-       [:div (str code)]
+   (let [slug   (:code-slug params)
+         record (coast/pluck '[:select * :from code :where [slug ?slug]] {:slug slug})]
+     (if (some? record)
+       [:article
+        [:h1 (:code/title record)]
+        [:div.code
+         {:class (:code/language record)}
+         [:pre.code (:code/body record)]]]
        (coast/raise {:not-found true})))))
