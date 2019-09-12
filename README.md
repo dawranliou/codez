@@ -1,5 +1,7 @@
 # codez
 
+![screenshot](resources/public/assets/img/screenshot.jpg)
+
 ## Start
 
 ```bash
