@@ -10,6 +10,8 @@
        "CODEZ"] ]
 
      [:div.overflow-y-scroll-ns.vh-100-ns
+      [:a.db.mt3.bg-white.gray.pv3.ph2.link.code.cursor-text;;.bg-animate.hover-bg-black.hover-white
+       {:href (coast/url-for :code/get-form)} "// Add new codez here:"]
       (for [{:code/keys [body language title slug published-at] :as record} snippets]
         [:div.mt3
          [:h2.f4.dib.mb0

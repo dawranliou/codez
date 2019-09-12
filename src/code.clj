@@ -13,7 +13,7 @@
        (c/dd v)])]])
 
 (defn get-form [request]
-  (c/container {:mw 6}
+  (c/container {:mw 8}
                (when (some? (:errors request))
                  (error (:errors request)))
 

@@ -12,3 +12,7 @@
 .lift:active {
     transform: translate(-5px, -5px);
 }
+
+.cursor-text:hover {
+    cursor: text;
+}
