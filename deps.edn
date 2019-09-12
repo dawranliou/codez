@@ -18,6 +18,4 @@
   {:main-opts  ["-m" "mach.pack.alpha.capsule"
                 "target/codez.jar"]
    :extra-deps {pack/pack.alpha {:git/url "https://github.com/juxt/pack.alpha.git"
-                                 :sha     "2769a6224bfb938e777906ea311b3daf7d2220f5"}}}
-
-  :repl {:extra-deps {nrepl {:mvn/version "0.6.0"}}}}}
+                                 :sha     "2769a6224bfb938e777906ea311b3daf7d2220f5"}}}}}
