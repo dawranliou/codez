@@ -14,6 +14,7 @@ repl:
 
 assets:
 	clj -m coast.assets
+	cp -r resources/public target
 
 server:
 	clj -m server
