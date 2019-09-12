@@ -48,10 +48,12 @@
    (when (some? errors) (error errors))
    (let [slug   (:code-slug params)
          record (coast/pluck '[:select * :from code :where [slug ?slug]] {:slug slug})]
+     (def record record)
      (if (some? record)
        [:article
         [:h1 (:code/title record)]
         [:div.code
-         {:class (:code/language record)}
-         [:pre.code (:code/body record)]]]
+         [:pre
+          [:code {:class (:code/language record)}
+           (:code/body record)]]]]
        (coast/raise {:not-found true})))))

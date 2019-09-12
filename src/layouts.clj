@@ -8,4 +8,6 @@
     (coast/css "bundle.css")
     (coast/js "bundle.js")]
    [:body.bg-light-pink
-    body]])
+    body
+    [:script {:src "/js/highlight.pack.js"}]
+    [:script "hljs.initHighlightingOnLoad();"]]])
