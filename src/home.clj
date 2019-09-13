@@ -12,6 +12,7 @@
      [:div.overflow-y-scroll-ns.vh-100-ns
       [:a.db.mt3.bg-white.gray.pv3.ph2.link.code.cursor-text;;.bg-animate.hover-bg-black.hover-white
        {:href (coast/url-for :code/get-form)} "// Add new codez here:"]
+
       (for [{:code/keys [body language title slug published-at] :as record} snippets]
         [:div.mt3
          [:h2.f4.dib.mb0
@@ -23,4 +24,12 @@
           (helpers/time-ago published-at)]
          [:pre
           [:code {:class language}
-           body]]])]]))
+           body]]])
+
+      [:footer.pv4.ph3.ph5-m.ph6-l
+       [:small.f6.db.tc
+        "© 2019" [:b.ttu "Daw-Ran Liou"] ", All Rights Reserved"]
+       [:div.tc.mt3
+        [:a.f6.dib.ph2.link.dim.black {:href "https://github.com/dawran6/codez/issues"} "Report an issue"]
+        [:a.f6.dib.ph2.link.dim.black {:href "https://github.com/dawran6/codez"} "Source"]
+        [:a.f6.dib.ph2.link.dim.black {:href "mailto://dawran6@gmail.com"} "Contact Me"]]]]]))
