@@ -45,19 +45,23 @@
 (defn get-item [{:keys [params errors]}]
   (c/container
    {:mw 8}
+
    (when (some? errors) (error errors))
+
    (let [slug   (:code-slug params)
          record (coast/pluck '[:select * :from code :where [slug ?slug]] {:slug slug})]
      (if (some? record)
        (let [{:code/keys [title published-at body language]} record]
          [:article
-          [:h2.f4.dib.mb0
-           [:a.link.dim.black.code {:href (coast/url-for :code/get-item record)}
-            (str slug " \"" title "\"")]]
-          [:time.f6.dib.ml3.code
-           {:data-seconds published-at
-            :data-date    true}
-           (helpers/time-ago published-at)]
+          [:header
+           [:a.f3.pv1.ph2.mr3.link.black.bg-animate.hover-white.hover-bg-black.code {:href (coast/url-for :home/index)} "<"]
+           [:h2.f4.dib.mb0
+            [:a.link.dim.black.code {:href (coast/url-for :code/get-item record)}
+             (str slug " \"" title "\"")]]
+           [:time.f6.dib.ml3.code
+            {:data-seconds published-at
+             :data-date    true}
+            (helpers/time-ago published-at)]]
           [:pre
            [:code {:class language}
             body]]])
