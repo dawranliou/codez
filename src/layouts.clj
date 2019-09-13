@@ -12,7 +12,7 @@
     [:meta {:property "og:url" :content "https://codez.xyz"}]
     [:meta {:property "og:title" :content "Codez"}]
     [:meta {:property "og:description" :content "Copy, paste, and share code. Nothing more."}]
-    [:meta {:property "og:image" :content "https://codez/assets/img/logo-full.png"}]
+    [:meta {:property "og:image" :content "https://codez.xyz/assets/img/logo-full.png"}]
     [:meta {:property "og:image:type" :content "image/png"}]
     [:meta {:property "og:image:width" :content "1920"}]
     [:meta {:property "og:image:height" :content "1920"}]
