@@ -3,6 +3,8 @@
 
 (defn layout [request body]
   (let [params       (:params request)
+        uri          (:uri request)
+        og-url       (str "https://codez.xyz" uri)
         og-image-url (if-let [slug (:code-slug params)]
                        (str "https://codez.xyz" (coast/url-for :code/get-image {:code/slug slug}))
                        "https://codez.xyz/assets/img/logo-full.png")]
@@ -13,7 +15,7 @@
       [:meta {:name "description" :content "Copy, paste, and share code. Nothing more."}]
       [:meta {:name "twitter:card" :content "summary"}]
       [:meta {:name "twitter:creator" :content "@dawranliou"}]
-      [:meta {:property "og:url" :content "https://codez.xyz"}]
+      [:meta {:property "og:url" :content og-url}]
       [:meta {:property "og:title" :content "Codez"}]
       [:meta {:property "og:description" :content "Copy, paste, and share code. Nothing more."}]
       [:meta {:property "og:image" :content og-image-url}]
