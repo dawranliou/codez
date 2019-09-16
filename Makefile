@@ -16,6 +16,11 @@ assets:
 	clj -m coast.assets
 	cp -r resources/public target
 
+copy-bin:
+	cp -r bin target
+
+build: assets uberjar copy-bin
+
 server:
 	clj -m server
 

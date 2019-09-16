@@ -7,6 +7,8 @@
    (coast/site
     (coast/with-layout layouts/layout
       [:get "/" :home/index]
-      [:get "/z" :code/get-form]
-      [:post "/z" :code/post-form]
-      [:get "/z/:code-slug" :code/get-item]))))
+      #_[:get "/z" :code/index]
+      [:get "/z/new" :code/get-form]
+      [:post "/z/new" :code/post-form]
+      [:get "/z/:code-slug" :code/get-item]))
+   [:get "/z/:code-slug/image.png" :code/get-image]))

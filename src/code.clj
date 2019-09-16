@@ -1,7 +1,10 @@
 (ns code
   (:require [coast]
             [helpers]
-            [components :as c]))
+            [components :as c]
+            [clojure.java.shell :as shell]
+            [clojure.java.io :as io]
+            [clojure.string :as string]))
 
 (defn error [m]
   [:div {:class "bg-red white pa2 mb4 br1"}
@@ -67,3 +70,20 @@
             body]]])
 
        (coast/raise {:not-found true})))))
+
+(defn get-image [{:keys [params]}]
+  (let [slug   (:code-slug params)
+        record (coast/pluck '[:select * :from code :where [slug ?slug]] {:slug slug})]
+    (if (nil? record)
+      (coast/raise {:not-found true})
+
+      (let [file-path (-> (shell/sh "bin/screenshot" slug)
+                          :out
+                          string/trim)]
+        {:status  200
+         :headers {"Content-Type" "image/png"}
+         :body    (io/file file-path)}))))
+
+(comment
+  (def slug "0e380c374a0d")
+  (shell/sh "node" "bin/screenshot.js" slug))
