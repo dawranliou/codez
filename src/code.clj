@@ -20,24 +20,29 @@
         query    (-> [:select :* :from :code]
                      (concat (when language [:where [:language language]])))
         records  (coast/q query)]
-    (c/container
-     {:mw 8}
+    [:div.vh-100-ns.dt-ns.w-100
+     [:div.dtc-ns.v-mid.tc.w-20-ns
+      (c/nav request)]
 
-     [:a.db.mt3.bg-white.gray.pv3.ph2.link.code.cursor-text;;.bg-animate.hover-bg-black.hover-white
-      {:href (coast/url-for :code/get-form {:language language})} "// Add new codez here:"]
+     [:div.overflow-y-scroll-ns.vh-100-ns
+      (c/container
+       {:mw 8}
 
-     (for [{:code/keys [body language title slug published-at] :as record} records]
-       [:div.mt3
-        [:h2.f4.dib.mb0
-         [:a.link.dim.black.code {:href (coast/url-for :code/get-item record)}
-          (str slug " \"" title "\"")]]
-        [:time.f6.dib.ml3.code
-         {:data-seconds published-at
-          :data-date    true}
-         (helpers/time-ago published-at)]
-        [:pre
-         [:code {:class language}
-          body]]]))))
+       [:a.db.mt3.bg-white.gray.pv3.ph2.link.code.cursor-text;;.bg-animate.hover-bg-black.hover-white
+        {:href (coast/url-for :code/get-form {:language language})} "// Add new codez here:"]
+
+       (for [{:code/keys [body language title slug published-at] :as record} records]
+         [:div.mt3
+          [:h2.f4.dib.mb0
+           [:a.link.dim.black.code {:href (coast/url-for :code/get-item record)}
+            (str slug " \"" title "\"")]]
+          [:time.f6.dib.ml3.code
+           {:data-seconds published-at
+            :data-date    true}
+           (helpers/time-ago published-at)]
+          [:pre
+           [:code {:class language}
+            body]]]))]]))
 
 (defn get-form [request]
   (c/container {:mw 8}

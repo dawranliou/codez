@@ -1,6 +1,7 @@
 (ns home
   (:require [coast]
-            [helpers]))
+            [helpers]
+            [components :as c]))
 
 (defn index [_]
   (let [snippets  (coast/q '[:select * :from code :order id desc :where ["published_at is not null"] :limit 50])
@@ -37,10 +38,5 @@
           [:code {:class language}
            body]]])
 
-      [:footer.pv4.ph3.ph5-m.ph6-l
-       [:small.f6.db.tc
-        "© 2019" [:b.ttu "Daw-Ran Liou"] ", All Rights Reserved"]
-       [:div.tc.mt3
-        [:a.f6.dib.ph2.link.dim.black {:href "https://github.com/dawran6/codez/issues"} "Report an issue"]
-        [:a.f6.dib.ph2.link.dim.black {:href "https://github.com/dawran6/codez"} "Source"]
-        [:a.f6.dib.ph2.link.dim.black {:href "mailto://dawran6@gmail.com"} "Contact Me"]]]]]))
+      (c/footer)
+      ]]))

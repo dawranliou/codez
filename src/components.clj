@@ -1,6 +1,32 @@
 (ns components
   (:require [coast]))
 
+(defn nav [request]
+  [:nav.w-100
+   [:ul.list.pa3.mh3-ns.ba
+    [:li.mb3 [:h1.code.f3.f-1-ns.lift.ttu [:a.link.dim.black.code {:href (coast/url-for :home/index)} "Codez"]]]
+    [:li.mb3
+     [:a.link.dim.black.code
+      {:href (coast/url-for :code/index)}
+      "#all"]]
+    (for [{:code/keys [language]} (coast/q [:select :distinct :code/language :from :code])]
+      [:li.mb3
+       [:a.link.dim.black.code
+        {:href (coast/url-for :code/index {:language language})}
+        (str "#" language)]])
+    [:li.mb3.f6 [:a.link.dim.black {:href "https://github.com/dawran6/codez/issues"} "Report an issue"]]
+    [:li.mb3.f6 [:a.link.dim.black {:href "https://github.com/dawran6/codez"} "Source"]]
+    [:li.mb3.f6 [:a.link.dim.black {:href "mailto://dawran6@gmail.com"} "Contact me"]]]])
+
+(defn footer []
+  [:footer.pv4.ph3.ph5-m.ph6-l
+   [:small.f6.db.tc
+    "© 2019" [:b.ttu "Daw-Ran Liou"] ", All Rights Reserved"]
+   [:div.tc.mt3
+    [:a.f6.dib.ph2.link.dim.black {:href "https://github.com/dawran6/codez/issues"} "Report an issue"]
+    [:a.f6.dib.ph2.link.dim.black {:href "https://github.com/dawran6/codez"} "Source"]
+    [:a.f6.dib.ph2.link.dim.black {:href "mailto://dawran6@gmail.com"} "Contact Me"]]])
+
 (defn link-to [url & body]
   [:a {:href url :class "f6 link underline black"}
    body])
@@ -18,7 +44,7 @@
 
 (defn container [m & body]
   (let [mw (or (:mw m) 8)]
-    [:div {:class (str "pa4 w-100 center mw" mw)}
+    [:div {:class (str "pa4-ns w-100 center mw" mw)}
      [:div {:class "overflow-auto"}
       body]]))
 
