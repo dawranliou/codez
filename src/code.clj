@@ -28,6 +28,9 @@
       (c/container
        {:mw 8}
 
+       [:h1.code
+        (str "#" (or language "all"))]
+
        [:a.db.mt3.bg-white.gray.pv3.ph2.link.code.cursor-text;;.bg-animate.hover-bg-black.hover-white
         {:href (coast/url-for :code/get-form {:language language})} "// Add new codez here:"]
 
