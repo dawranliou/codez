@@ -9,7 +9,7 @@
 (defn nav [request]
   [:nav.w-100
    [:ul.list.pa3.mh3-ns.ba
-    [:li.mb3 [:h1.code.f3.f-1-ns.lift.ttu [:a.link.dim.black.code {:href (coast/url-for :home/index)} "Codez"]]]
+    [:li.mb3 [:h1.share-tech-mono.f3.f-1-ns.lift.ttu [:a.link.dim.black {:href (coast/url-for :home/index)} "Codez"]]]
     [:li.mb3
      [:a.link.dim.black.code
       {:href (coast/url-for :code/index)}

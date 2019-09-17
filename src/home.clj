@@ -8,7 +8,7 @@
         languages (coast/q [:select :distinct :code/language :from :code])]
     [:div.vh-100-ns.dt-ns.dt--fixed-ns.w-100
      [:div.dtc-ns.v-mid.tc
-      [:h1.code.f1.f-headline-ns.lift.ttu
+      [:h1.share-tech-mono.f1.f-headline-ns.lift.ttu
        [:a.link.black
         {:href (coast/url-for :code/index)}
         "Codez"]]

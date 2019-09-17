@@ -16,3 +16,7 @@
 .cursor-text:hover {
     cursor: text;
 }
+
+.share-tech-mono {
+    font-family: "Share Tech Mono";
+}
