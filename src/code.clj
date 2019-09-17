@@ -17,7 +17,7 @@
 
 (defn index [request]
   (let [language (-> request :params :language)
-        query    (-> [:select :* :from :code]
+        query    (-> [:select :* :from :code :order :id :desc]
                      (concat (when language [:where [:language language]])))
         records  (coast/q query)]
     [:div.vh-100-ns.dt-ns.w-100
