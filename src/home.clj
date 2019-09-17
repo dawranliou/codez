@@ -10,6 +10,8 @@
      [:div.dtc-ns.v-mid.tc
       [:h1.code.f1.f-headline-ns.lift.ttu
        "Codez"]
+      [:p.f4.f2-ns
+       "Copy, paste, and share code."]
       [:ul.list.pl0
        [:li.dib
         [:a.link.dim.black.code
