@@ -1,6 +1,11 @@
 (ns components
   (:require [coast]))
 
+(def footer-items
+  '([:a.f6.dib.ph2.link.dim.black.underline {:href "https://github.com/dawran6/codez/issues"} "Report an issue"]
+    [:a.f6.dib.ph2.link.dim.black.underline {:href "https://github.com/dawran6/codez"} "Source"]
+    [:a.f6.dib.ph2.link.dim.black.underline {:href "mailto://dawran6@gmail.com"} "Contact Me"]))
+
 (defn nav [request]
   [:nav.w-100
    [:ul.list.pa3.mh3-ns.ba
@@ -14,18 +19,15 @@
        [:a.link.dim.black.code
         {:href (coast/url-for :code/index {:language language})}
         (str "#" language)]])
-    [:li.mb3.f6 [:a.link.dim.black {:href "https://github.com/dawran6/codez/issues"} "Report an issue"]]
-    [:li.mb3.f6 [:a.link.dim.black {:href "https://github.com/dawran6/codez"} "Source"]]
-    [:li.mb3.f6 [:a.link.dim.black {:href "mailto://dawran6@gmail.com"} "Contact me"]]]])
+    (for [footer-item footer-items]
+      [:li.mb3.f6 footer-item])]])
 
 (defn footer []
   [:footer.pv4.ph3.ph5-m.ph6-l
    [:small.f6.db.tc
-    "© 2019" [:b.ttu "Daw-Ran Liou"] ", All Rights Reserved"]
+    "© 2019 " [:b.ttu "Daw-Ran Liou"] ", All Rights Reserved"]
    [:div.tc.mt3
-    [:a.f6.dib.ph2.link.dim.black {:href "https://github.com/dawran6/codez/issues"} "Report an issue"]
-    [:a.f6.dib.ph2.link.dim.black {:href "https://github.com/dawran6/codez"} "Source"]
-    [:a.f6.dib.ph2.link.dim.black {:href "mailto://dawran6@gmail.com"} "Contact Me"]]])
+    footer-items]])
 
 (defn link-to [url & body]
   [:a {:href url :class "f6 link underline black"}
