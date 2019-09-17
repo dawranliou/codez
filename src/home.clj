@@ -9,7 +9,9 @@
     [:div.vh-100-ns.dt-ns.dt--fixed-ns.w-100
      [:div.dtc-ns.v-mid.tc
       [:h1.code.f1.f-headline-ns.lift.ttu
-       "Codez"]
+       [:a.link.black
+        {:href (coast/url-for :code/index)}
+        "Codez"]]
       [:p.f4.f2-ns
        "Copy, paste, and "
        [:a.link.dim.black.underline
