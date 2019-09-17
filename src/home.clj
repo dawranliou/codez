@@ -11,7 +11,10 @@
       [:h1.code.f1.f-headline-ns.lift.ttu
        "Codez"]
       [:p.f4.f2-ns
-       "Copy, paste, and share code."]
+       "Copy, paste, and "
+       [:a.link.dim.black.underline
+        {:href (coast/url-for :code/get-form)}
+        "share code:"]]
       [:ul.list.pl0
        [:li.dib
         [:a.link.dim.black.code
@@ -24,9 +27,6 @@
            (str "#" language)]])]]
 
      [:div.overflow-y-scroll-ns.vh-100-ns
-      [:a.db.mt3.bg-white.gray.pv3.ph2.link.code.cursor-text;;.bg-animate.hover-bg-black.hover-white
-       {:href (coast/url-for :code/get-form)} "// Add new codez here:"]
-
       (for [{:code/keys [body language title slug published-at] :as record} snippets]
         [:div.mt3
          [:h2.f4.dib.mb0
