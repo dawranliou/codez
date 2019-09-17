@@ -2,13 +2,14 @@
   (:require [coast]))
 
 (defn layout [request body]
-  (let [params       (:params request)
+  (let [title        (:title request)
+        params       (:params request)
         og-image-url (if-let [slug (:code-slug params)]
                        (str "https://codez.xyz" (coast/url-for :code/get-image {:code/slug slug}))
                        "https://codez.xyz/assets/img/logo-full.png")]
     [:html
      [:head
-      [:title "Codez"]
+      [:title title]
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
       [:meta {:name "description" :content "Copy, paste, and share code. Nothing more."}]
       [:meta {:name "twitter:card" :content "summary"}]
