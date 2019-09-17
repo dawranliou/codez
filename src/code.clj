@@ -90,7 +90,7 @@
        (let [{:code/keys [title published-at body language]} record]
          [:article
           [:header
-           [:a.f3.pv1.ph2.mr3.link.black.bg-animate.hover-white.hover-bg-black.code {:href (coast/url-for :home/index)} "<"]
+           [:a.f3.pv1.ph2.mr3.link.black.bg-animate.hover-white.hover-bg-black.code {:href (coast/url-for :code/index {:language language})} "<"]
            [:h2.f4.dib.mb0
             [:a.link.dim.black.code {:href (coast/url-for :code/get-item record)}
              (str slug " \"" title "\"")]]
