@@ -1,6 +1,6 @@
 # codez
 
-![screenshot](resources/public/assets/img/screenshot.jpg)
+![screenshot](resources/public/assets/img/logo-tagline.png)
 
 ## Start
 
