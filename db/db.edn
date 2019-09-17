@@ -1,11 +1,11 @@
 {:dev {:database "codez_dev.sqlite3"
-       :adapter "sqlite"}
+       :adapter  "sqlite"}
 
  :test {:database "codez_test.sqlite3"
-        :adapter "sqlite"}
+        :adapter  "sqlite"}
 
  :prod {:database #env :db-name
-        :adapter "sqlite"}}
+        :adapter  "sqlite"}}
 
  ; or you can use postgres
 

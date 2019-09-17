@@ -15,6 +15,30 @@
        (c/dt (str k))
        (c/dd v)])]])
 
+(defn index [request]
+  (let [language (-> request :params :language)
+        query    (-> [:select :* :from :code]
+                     (concat (when language [:where [:language language]])))
+        records  (coast/q query)]
+    (c/container
+     {:mw 8}
+
+     [:a.db.mt3.bg-white.gray.pv3.ph2.link.code.cursor-text;;.bg-animate.hover-bg-black.hover-white
+      {:href (coast/url-for :code/get-form {:language language})} "// Add new codez here:"]
+
+     (for [{:code/keys [body language title slug published-at] :as record} records]
+       [:div.mt3
+        [:h2.f4.dib.mb0
+         [:a.link.dim.black.code {:href (coast/url-for :code/get-item record)}
+          (str slug " \"" title "\"")]]
+        [:time.f6.dib.ml3.code
+         {:data-seconds published-at
+          :data-date    true}
+         (helpers/time-ago published-at)]
+        [:pre
+         [:code {:class language}
+          body]]]))))
+
 (defn get-form [request]
   (c/container {:mw 8}
                (when (some? (:errors request))
@@ -25,7 +49,7 @@
                                (c/input {:type "text" :name "code/title" :value (-> request :params :code/title)})
 
                                (c/label {:for "code/language"} "Language (default: plaintext)")
-                               (c/input {:type "text" :name "code/language" :value (-> request :params :code/body)})
+                               (c/input {:type "text" :name "code/language" :value (-> request :params :language)})
 
                                (c/label {:for "code/body"} "Body")
                                [:textarea.db.w-100.vh-50.pa2.mb2.code {:name "code/body" :value (-> request :params :code/body)}]
