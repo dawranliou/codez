@@ -130,7 +130,7 @@
    (when-let [error (:error/message request)]
      [:div error])
    (coast/form-for
-    ::create
+    ::create-session
     (input {:type "email" :name "member/email"})
     (input {:type "password" :name "member/password"})
     (submit "Submit"))))
@@ -148,7 +148,7 @@
                             (coast/rescue))]
     (if (or (some? errors) (false? valid?))
       (sign-in (merge request {:error/message "Invalid email or password"}))
-      (-> (coast/redirect-to ::dashboard)
+      (-> (coast/redirect-to ::index)
           (assoc :session {:member/email email})))))
 
 (defn delete-session
