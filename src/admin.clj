@@ -82,7 +82,7 @@
                (when (some? (:errors request))
                  (errors (:errors request)))
 
-               (coast/form-for ::change code
+               (coast/form-for ::change-code code
                                (label {:for "code/body"} "body")
                                [:textarea.db.w-100.vh-50.pa2.mb2.code {:name "code/body"} (:code/body code)]
 
