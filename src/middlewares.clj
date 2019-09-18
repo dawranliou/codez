@@ -4,11 +4,14 @@
 (defn title [handler]
   (fn [request]
     (let [title (case (:coast.router/name request)
-                  :code/index    (if-let [language (-> request :params :language)]
-                                   (str "Codez | #" language)
-                                   "Codez | #all")
-                  :code/get-item (str "Codez | " (-> request :params :code-slug))
-                  :code/get-form "Codez | New Codez"
+                  :code/index           (if-let [language (-> request :params :language)]
+                                          (str "Codez | #" language)
+                                          "Codez | #all")
+                  :code/get-item        (str "Codez | " (-> request :params :code-slug))
+                  :code/get-form        "Codez | New Codez"
+                  :admin/index          "Codez | Admin"
+                  :admin/edit-code-form "Codez | Edit"
+                  :admin/sign-in "Codez | Admin Sign In"
                   "Codez")]
       (-> (assoc request :title title)
           (handler)))))
