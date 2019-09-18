@@ -70,6 +70,7 @@
   (let [[record errors] (-> (coast/validate (:params request) [[:required [:code/body]]])
                             (select-keys [:code/body :code/title :code/language])
                             (update :code/language #(or % "plaintext"))
+                            (update :code/body string/trim)
                             (assoc :code/published-at (coast.time2/now))
                             (assoc :code/slug (helpers/slug))
                             (coast/insert)
